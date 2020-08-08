@@ -12,8 +12,8 @@ class LoginRepository implements ILoginRepository {
   LoginRepository(this.dataSource);
 
   @override
-  Future<Either<RepositoryError, ILoginCredentialsModel>>
-      loginWithUsernameAndPass(LoginCredentials credentials) async {
+  Future<Either<RepositoryError, LoginCredentials>> loginWithUsernameAndPass(
+      LoginCredentials credentials) async {
     await dataSource.loginWithUsernameAndPass(credentials);
   }
 }
