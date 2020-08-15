@@ -14,6 +14,11 @@ class LoginRepository implements ILoginRepository {
   @override
   Future<Either<RepositoryError, LoginCredentials>> loginWithUsernameAndPass(
       LoginCredentials credentials) async {
-    await dataSource.loginWithUsernameAndPass(credentials);
+    try {
+      final response = await dataSource.loginWithUsernameAndPass(credentials);
+      return right(response.toEntity());
+    } catch (e) {
+      return left(RepositoryError("Erro no repositório"));
+    }
   }
 }
